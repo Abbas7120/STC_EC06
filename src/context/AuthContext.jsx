@@ -77,7 +77,7 @@ export function AuthProvider({ children }) {
   };
 
   /*
-    🔁 🔁 🔁 WHEN BACKEND IS READY, REPLACE THE login() FUNCTION ABOVE WITH THIS:
+ WHEN BACKEND IS READY, REPLACE THE login() FUNCTION ABOVE WITH THIS:
 
     const login = async (email, password) => {
       try {
