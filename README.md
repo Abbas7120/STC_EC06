@@ -3,7 +3,7 @@
 
 ![image](https://github.com/user-attachments/assets/b87f2bff-3ec3-40b5-8513-59719818515f)
 
- 1. Login System
+1. Login System
 Frontend-only Login.jsx form with email + password fields.
 
 Password visibility toggle using lucide-react icons.
@@ -12,7 +12,7 @@ Demo Credentials are hardcoded for Director and Trainers.
 
 Authentication logic resides in AuthContext.jsx.
 
- 2. AuthContext
+2. AuthContext
 Mock login logic using hardcoded demoUsers.
 
 login(email, password): Matches hardcoded users.
@@ -23,14 +23,14 @@ updateUser(updates): Updates local user and mock array.
 
 Future-proofed with commented code ready for backend (Express + SQLite).
 
- 3. User Session Management
+3. User Session Management
 AuthContext auto-loads saved user from localStorage.
 
 Handles page refresh and maintains login session.
 
 (Clear instructions added for switching to backend.)
 
- 4. Role-based Dashboard
+4. Role-based Dashboard
 Director and Trainer see different menus and sections.
 
 Rendered dynamically based on user.role.
@@ -43,7 +43,7 @@ components/Trainer/
 
 components/Common/
 
-📁 5. Layout System
+5. Layout System
 Sidebar, Header, and Main layout working as shell.
 
 Section switching via useState(activeSection).
