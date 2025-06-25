@@ -5,7 +5,7 @@ const demoUsers = [
   {
     id: '1',
     email: 'director@stc.railway.gov.in',
-    name: 'Director STC',
+    name: 'Mr Director ',
     role: 'director',
     position: 'Director',
     phone: '+91-9876543200',

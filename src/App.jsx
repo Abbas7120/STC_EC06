@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext'; // ✅ Will use backend later inside AuthContext
-//import { DataProvider } from './context/DataContext'; // ✅ If using real-time data, you may later fetch from backend
+import { DataProvider } from './context/DataContext'; // ✅ If using real-time data, you may later fetch from backend
 
 import Login from './components/Login'; // ✅ This uses AuthContext.login() — replace logic in AuthContext only
 
@@ -17,6 +17,7 @@ import RoleManager from './components/Director/RoleManager';
 // Trainer Components
 import TrainerDashboard from './components/Trainer/Dashboard';
 import AddTraineeForm from './components/Trainer/AddTraineeForm';
+import ViewTrainees from './components/Trainer/ViewTrainees';
 import Marksheet from './components/Trainer/Marksheet';
 import IDCard from './components/Trainer/IDCard';
 
@@ -47,6 +48,7 @@ function AppContent() {
       dashboard: 'Dashboard',
       analytics: 'Analytics',
       trainers: 'View Trainers',
+      trainees:'View Trainees',
       roles: 'Role Manager',
       'add-trainee': 'Add Trainee',
       marksheet: 'Marksheet Management',
@@ -80,6 +82,8 @@ function AppContent() {
       switch (activeSection) {
         case 'marksheet':
           return <Marksheet />;
+          case 'trainees':
+          return <ViewTrainees loggedInTrainerId={user?.id}/>;
         case 'id-card':
           return <IDCard />;
         default:
@@ -106,8 +110,10 @@ function App() {
     // ✅ AuthProvider → later will be connected to backend for login/logout/updateUser
     <AuthProvider>
       {/* ✅ DataProvider → optionally switch to use data from backend if needed */}
- 
-        <AppContent />
+   <DataProvider>
+     <AppContent />
+   </DataProvider>
+       
    
     </AuthProvider>
   );
