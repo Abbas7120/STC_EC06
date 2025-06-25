@@ -1,5 +1,59 @@
 # React + Vite
 
+
+![image](https://github.com/user-attachments/assets/b87f2bff-3ec3-40b5-8513-59719818515f)
+
+1. Login System
+Frontend-only Login.jsx form with email + password fields.
+
+Password visibility toggle using lucide-react icons.
+
+Demo Credentials are hardcoded for Director and Trainers.
+
+Authentication logic resides in AuthContext.jsx.
+
+2. AuthContext
+Mock login logic using hardcoded demoUsers.
+
+login(email, password): Matches hardcoded users.
+
+logout(): Clears user and localStorage.
+
+updateUser(updates): Updates local user and mock array.
+
+Future-proofed with commented code ready for backend (Express + SQLite).
+
+3. User Session Management
+AuthContext auto-loads saved user from localStorage.
+
+Handles page refresh and maintains login session.
+
+(Clear instructions added for switching to backend.)
+
+4. Role-based Dashboard
+Director and Trainer see different menus and sections.
+
+Rendered dynamically based on user.role.
+
+Components organized under:
+
+components/Director/
+
+components/Trainer/
+
+components/Common/
+
+5. Layout System
+Sidebar, Header, and Main layout working as shell.
+
+Section switching via useState(activeSection).
+
+UI updates based on current route/section.
+
+
+
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
