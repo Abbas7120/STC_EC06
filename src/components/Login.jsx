@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Train, Eye, EyeOff } from 'lucide-react';
+import Image from "../../public/STC_logo.png"
 import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
@@ -32,13 +33,13 @@ export default function Login() {
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-8">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="bg-blue-600 p-3 rounded-full">
-              <Train className="h-8 w-8 text-white" />
+            <div className=" p-3 rounded-full">
+             <img src={Image} className="h-28 w-40 text-white" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">STC Login</h1>
-          <p className="text-gray-600">Supervisors Training Centre</p>
-          <p className="text-sm text-gray-500">Northern Railway</p>
+          <h1 className="text-2xl font-bold text-gray-900">Supervisors Training Centre</h1>
+          <p className="text-gray-600"> Northern Railway</p>
+          <p className="text-sm text-gray-500">Login</p>
         </div>
 
         <div className="bg-blue-50 p-4 rounded-lg mb-6">
@@ -106,7 +107,7 @@ export default function Login() {
         </form>
 
         <div className="mt-6 text-center text-xs text-gray-500">
-          <p>STC Training Management System v1.0</p>
+          <p>STC Training Management System </p>
           <p>Northern Railway - Government of India</p>
         </div>
       </div>
