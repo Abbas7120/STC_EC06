@@ -171,13 +171,13 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
-import { useNavigate } from 'react-router-dom'; // ✅ Added
+import { useNavigate } from 'react-router-dom'; // Added
 
 export default function TrainerDashboard() {
   const { user } = useAuth();
   const { getTraineesByTrainer } = useData();
   const [myTrainees, setMyTrainees] = useState([]);
-  const navigate = useNavigate(); // ✅ Initialize
+  const navigate = useNavigate(); // Initialize
 
   useEffect(() => {
     const loadTrainees = async () => {
