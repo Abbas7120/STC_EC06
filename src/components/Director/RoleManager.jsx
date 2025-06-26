@@ -98,7 +98,7 @@ export default function RoleManager() {
 
 
   const RoleIcon = role => role === 'director' ? Shield : User;
->>>>>>> 83eb0e2dc859e1dc96c9b641febaafafa22d1234
+
 
   return (
     <div className="space-y-6">
