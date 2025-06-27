@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react';
 import { Save, Upload, User, CheckCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
+import CourseSelector from './CourseSelector';
 
 
 /*Ensure your backend API accepts all these fields*/ 
@@ -35,11 +36,23 @@ export default function AddTraineeForm() {
     workingUnder: '',
       customWorkingUnder: '',//add this line
     stationCode: '',
+    courseTitle:'',
     phoneNumber: '',
     email: '',
     address: '',
-    educationalQualification: ''
+   class10Marks: '',
+  class12Marks: '',
+  degreeType: '',       // e.g., Bachelor, Diploma, Postgraduate
+  degreeName: '',       // e.g., B.Tech, M.Sc
+  graduationMarks: '',
   });
+
+  const [selectedCourseDetails,setSelectedCourseDetails]=useState({
+    code:'',
+    title:'',
+    duration:''
+  })
+
 
   // Get all active trainers for the dropdown
   const activeTrainers = trainers.filter(trainer => trainer.active);
@@ -83,8 +96,9 @@ export default function AddTraineeForm() {
       'serialNo', 'fullName', 'fatherName', 'motherName', 'dateOfBirth',
       'dateOfAppointment', 'dateOfSparing', 'category', 'bloodGroup',
       'maritalStatus', 'employeeName', 'pfNumber', 'modeOfAppointment',
-      'designation', 'moduleNumber', 'stream', 'unit', 'workingUnder',
-      'stationCode', 'phoneNumber', 'email', 'address', 'educationalQualification'
+     'unit', 'workingUnder',
+      'stationCode', 'phoneNumber', 'email', 'address','class10Marks',
+  'class12Marks','degreeType','degreeName','graduationMarks',
     ];
 
     for (const field of requiredFields) {
@@ -461,41 +475,22 @@ export default function AddTraineeForm() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Designation *
-              </label>
-              <select
-                name="designation"
-                value={formData.designation}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select Designation</option>
-                <option value="SSE">SSE</option>
-                <option value="JE">JE</option>
-                <option value="Manual">Manual</option>
-              </select>
-            </div>
+           
+  <div>
+  
+  <CourseSelector
+    onSelect={(course) => {
+      setSelectedCourseDetails(course);
+      setFormData(prev => ({
+        ...prev,
+        moduleNumber: course.code,
+        courseTitle: course.title,
+        courseDuration: course.duration
+      }));
+    }}
+  />
+</div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Module Number *
-              </label>
-              <select
-                name="moduleNumber"
-                value={formData.moduleNumber}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select Module</option>
-                <option value="MSE-C">MSE-C</option>
-                <option value="MJI-W">MJI-W</option>
-                <option value="MJI-D">MJI-D</option>
-              </select>
-            </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -512,24 +507,7 @@ export default function AddTraineeForm() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Stream *
-              </label>
-              <select
-                name="stream"
-                value={formData.stream}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select Stream</option>
-                <option value="CNW">CNW</option>
-                <option value="Diesel">Diesel</option>
-                <option value="Workshop">Workshop</option>
-                <option value="Manual">Manual</option>
-              </select>
-            </div>
+         
           </div>
         </div>
 
@@ -658,19 +636,88 @@ export default function AddTraineeForm() {
               />
             </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Educational Qualification *
+           <div className="md:col-span-2">
+             <label className="block text-sm font-medium text-gray-700 mb-1">
+               Educational Qualification *
               </label>
-              <input
-                type="text"
-                name="educationalQualification"
-                value={formData.educationalQualification}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              />
-            </div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Class 10 Marks (%) *
+  </label>
+  <input
+    type="number"
+    name="class10Marks"
+    value={formData.class10Marks}
+    onChange={handleInputChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    placeholder="e.g., 85.6"
+    required
+  />
+</div>
+
+<div className="md:col-span-2">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Class 12 Marks (%) *
+  </label>
+  <input
+    type="number"
+    name="class12Marks"
+    value={formData.class12Marks}
+    onChange={handleInputChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    placeholder="e.g., 87.2"
+    required
+  />
+</div>
+
+<div className="md:col-span-2">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Degree Type *
+  </label>
+  <select
+    name="degreeType"
+    value={formData.degreeType}
+    onChange={handleInputChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    required
+  >
+    <option value="">Select Type</option>
+    <option value="Bachelor">Bachelor</option>
+    <option value="Postgraduate">Postgraduate</option>
+    <option value="Diploma">Diploma</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+
+<div className="md:col-span-2">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Degree Name *
+  </label>
+  <input
+    type="text"
+    name="degreeName"
+    value={formData.degreeName}
+    onChange={handleInputChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    placeholder="e.g., B.Tech, M.Sc"
+    required
+  />
+</div>
+
+<div className="md:col-span-2">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Graduation/Postgraduation Marks (%) *
+  </label>
+  <input
+    type="number"
+    name="graduationMarks"
+    value={formData.graduationMarks}
+    onChange={handleInputChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    placeholder="e.g., 75.4"
+    required
+  />
+</div>
+ 
           </div>
         </div>
 
@@ -707,7 +754,11 @@ export default function AddTraineeForm() {
                   phoneNumber: '',
                   email: '',
                   address: '',
-                  educationalQualification: ''
+                  class10Marks: '',
+        class12Marks: '',
+        degreeType: '',
+        degreeName: '',
+        graduationMarks: ''
                 });
               }
             }}

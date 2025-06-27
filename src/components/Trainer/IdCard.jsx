@@ -138,8 +138,7 @@ export default function IDCard() {
             <hr className="my-2" />
             <p><strong>Name:</strong> {selectedTraineeData.fullName}</p>
             <p><strong>ID:</strong> {selectedTraineeData.id}</p>
-            <p><strong>Module:</strong> {selectedTraineeData.moduleNumber}</p>
-            <p><strong>Designation:</strong> {selectedTraineeData.designation}</p>
+            <p><strong>Course Code:</strong> {selectedTraineeData.moduleNumber}</p>
             <p><strong>Course Duration:</strong> {selectedTraineeData.courseDuration}</p>
             <p><strong>Email:</strong> {selectedTraineeData.email}</p>
             <p><strong>Phone:</strong> {selectedTraineeData.phoneNumber}</p>
