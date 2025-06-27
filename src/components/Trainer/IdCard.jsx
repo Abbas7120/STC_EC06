@@ -133,7 +133,7 @@ export default function IDCard() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">ID Card Preview</h3>
           <div className="id-card-preview border border-blue-800 rounded-lg p-4 text-blue-900 bg-blue-50 max-w-sm mx-auto text-center">
-            <img src="/images/STC logo.png" alt="STC Logo" className="w-20 h-20 mx-auto mb-2" />
+            <img src="/public/STC_logo.png" alt="STC Logo" className="max-w-[80px] h-auto mx-auto mb-2" />
             <p className="font-bold">STC LUCKNOW | IDENTITY CARD</p>
             <hr className="my-2" />
             <p><strong>Name:</strong> {selectedTraineeData.fullName}</p>
