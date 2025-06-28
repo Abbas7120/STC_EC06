@@ -147,6 +147,7 @@ import AddTraineeForm from './components/Trainer/AddTraineeForm';
 import ViewTrainees from './components/Trainer/ViewTrainees';
 import Marksheet from './components/Trainer/Marksheet';
 import IDCard from './components/Trainer/IDCard';
+import Attendance from './components/Trainer/Attendance';
 
 import Profile from './components/Common/Profile';
 
@@ -227,6 +228,7 @@ function AppRoutes() {
         <Route path="marksheet" element={<Marksheet />} />
         <Route path="id-card" element={<IDCard />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="/trainer/attendance" element={<Attendance />} />
         <Route index element={<Navigate to="/dashboard" />} />
       </Route>
 
