@@ -129,7 +129,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  Outlet
 } from 'react-router-dom';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -147,16 +148,16 @@ import AddTraineeForm from './components/Trainer/AddTraineeForm';
 import ViewTrainees from './components/Trainer/ViewTrainees';
 import Marksheet from './components/Trainer/Marksheet';
 import IDCard from './components/Trainer/IDCard';
+//import AttendancePage from './components/Trainer/Attandence'; // ✅ NEW
 
 import Profile from './components/Common/Profile';
 
 // Layout
 import Sidebar from './components/Layout/Sidebar';
 import Header from './components/Layout/Header';
-import { Outlet } from 'react-router-dom';
 
-// 🛡️ Private route wrapper
-function PrivateRoute({ children }) {
+// 🛡 Role-based private route wrapper
+function PrivateRoute({ allowedRoles, children }) {
   const { user, isLoading } = useAuth();
 
   if (isLoading) {
@@ -170,14 +171,14 @@ function PrivateRoute({ children }) {
     );
   }
 
-  if (!user) {
+  if (!user || (allowedRoles && !allowedRoles.includes(user.role))) {
     return <Navigate to="/login" replace />;
   }
 
   return children;
 }
 
-// 💡 Shared layout
+// 💡 Shared layout with header/sidebar
 function LayoutWrapper() {
   const { user } = useAuth();
 
@@ -192,6 +193,7 @@ function LayoutWrapper() {
       '/marksheet': 'Marksheet Management',
       '/id-card': 'ID Card Generation',
       '/trainees': 'View Trainees',
+    
       '/profile': 'My Profile'
     };
     return map[path] || 'Dashboard';
@@ -210,31 +212,61 @@ function LayoutWrapper() {
   );
 }
 
+// 🌐 App routes
 function AppRoutes() {
   const { user } = useAuth();
 
   return (
     <Routes>
+      {/* Public Route */}
       <Route path="/login" element={<Login />} />
 
+      {/* Protected Layout */}
       <Route path="/" element={<PrivateRoute><LayoutWrapper /></PrivateRoute>}>
-        <Route path="dashboard" element={user?.role === 'director' ? <DirectorDashboard /> : <TrainerDashboard />} />
-        <Route path="analytics" element={<Analytics />} />
-        <Route path="trainers" element={<ViewTrainers />} />
-        <Route path="roles" element={<RoleManager />} />
-        <Route path="add-trainee" element={<AddTraineeForm />} />
-        <Route path="trainees" element={<ViewTrainees loggedInTrainerId={user?.id} />} />
-        <Route path="marksheet" element={<Marksheet />} />
-        <Route path="id-card" element={<IDCard />} />
+        {/* Dashboard */}
+        <Route
+          path="dashboard"
+          element={user?.role === 'director' ? <DirectorDashboard /> : <TrainerDashboard />}
+        />
+
+        {/* Director-only Routes */}
+        <Route path="analytics" element={
+          <PrivateRoute allowedRoles={['director']}><Analytics /></PrivateRoute>
+        } />
+        <Route path="trainers" element={
+          <PrivateRoute allowedRoles={['director']}><ViewTrainers /></PrivateRoute>
+        } />
+        <Route path="roles" element={
+          <PrivateRoute allowedRoles={['director']}><RoleManager /></PrivateRoute>
+        } />
+
+        {/* Trainer-only Routes */}
+        <Route path="add-trainee" element={
+          <PrivateRoute allowedRoles={['trainer']}><AddTraineeForm /></PrivateRoute>
+        } />
+        <Route path="trainees" element={
+          <PrivateRoute allowedRoles={['trainer']}><ViewTrainees loggedInTrainerId={user?.id} /></PrivateRoute>
+        } />
+        <Route path="marksheet" element={
+          <PrivateRoute allowedRoles={['trainer']}><Marksheet /></PrivateRoute>
+        } />
+        <Route path="id-card" element={
+          <PrivateRoute allowedRoles={['trainer']}><IDCard /></PrivateRoute>
+        } />
+       
+
+        {/* Common Route */}
         <Route path="profile" element={<Profile />} />
         <Route index element={<Navigate to="/dashboard" />} />
       </Route>
 
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
 }
 
+// 🌟 Root App
 function App() {
   return (
     <AuthProvider>
@@ -247,4 +279,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
