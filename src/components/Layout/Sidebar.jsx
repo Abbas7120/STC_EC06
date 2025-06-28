@@ -124,14 +124,15 @@ export default function Sidebar() {
     { path: '/profile', label: 'My Profile', icon: User }
   ];
 
-  const trainerMenuItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/add-trainee', label: 'Add Trainee', icon: UserPlus },
-    { path: '/marksheet', label: 'Marksheet', icon: FileText },
-    { path: '/id-card', label: 'ID Card Generation', icon: CreditCard },
-    { path: '/trainees', label: 'View Trainees', icon: Users },
-    { path: '/profile', label: 'My Profile', icon: User }
-  ];
+ const trainerMenuItems = [
+  { path: '/dashboard', label: 'Dashboard', icon: Home },
+  { path: '/add-trainee', label: 'Add Trainee', icon: UserPlus },
+  { path: '/marksheet', label: 'Marksheet', icon: FileText },
+  { path: '/id-card', label: 'ID Card Generation', icon: CreditCard },
+  { path: '/trainees', label: 'View Trainees', icon: Users },
+  { path: '/trainer/attendance', label: 'Attendance', icon: FileText }, // 👈 NEW LINE
+  { path: '/profile', label: 'My Profile', icon: User }
+];
 
   const menuItems = user?.role === 'director' ? directorMenuItems : trainerMenuItems;
 

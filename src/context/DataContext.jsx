@@ -220,6 +220,11 @@ export function DataProvider({ children }) {
     const updatedTrainees = trainees.filter(trainee => trainee.id !== id);
     saveTrainees(updatedTrainees);
 
+    // Remove related attendance
+  const currentAttendance = JSON.parse(localStorage.getItem('stc_attendance')) || {};
+  delete currentAttendance[id];
+  localStorage.setItem('stc_attendance', JSON.stringify(currentAttendance));
+
     // REPLACE WITH: API call
     /*
     try {
@@ -462,6 +467,9 @@ export const useData = () => {
   }
   return context;
 };
+
+export { DataContext };
+
 
 // TODO: Backend API Endpoints you need to create:
 /*
