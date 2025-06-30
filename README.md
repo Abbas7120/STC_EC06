@@ -52,62 +52,46 @@ UI updates based on current route/section.
 
 These all UI for Director -
 
-![Add trannie  UI ](https://github.com/user-attachments/assets/cae115a1-44fa-41bf-b4e1-e1282ad38081)
 
-1. Add Trainee Form
-- Frontend form to collect trainee details like name, email, department, and training dates.
-- Uses React `useState` for form data management.
-- Basic validation added for required fields.
-- On form submission, data is displayed in console or stored in local state (for mock setup).
-- Designed for easy integration with backend APIs (future-ready).
+These all are for trainer-
 
-![Marksheet Ui](https://github.com/user-attachments/assets/258837e1-e6b2-43fb-a21f-38314804917f)
+![Dashboard UI](https://github.com/user-attachments/assets/e1caef91-2da9-4b49-9fde-4ad5951c0604)
 
-1. Marksheet Generation
-- Displays trainee marks and exam results in a structured table format.
-- Data fetched or managed via state/local mock array.
-- Provides clean and readable layout for quick evaluation.
-- Ready for backend integration to fetch real-time marks and feedback.
+##  Dashboard UI
 
+A modern and responsive admin dashboard built -
 
-![Dashboard ](https://github.com/user-attachments/assets/9db078bb-1324-4fe4-9163-abdc167b39cf)
+- Sidebar navigation with icons
+- Topbar with profile and page title
+- Dashboard cards for key stats
+- Clean layout for roles like Director and Trainer
+- Icons via `lucide-react`
 
-1.Dashboard Overview
-- Displays key trainee metrics like total trainees, sessions, and feedback stats.
-- Clean layout with cards and icon-based highlights.
-- Dynamically updates based on current user role (Director/Trainer).
-- Built for scalability with future charts and analytics integration.
+![View  Trainees](https://github.com/user-attachments/assets/bd764127-bfeb-4492-b57b-5d987473c648)
 
+##  View Trainees
 
-![View trannie](https://github.com/user-attachments/assets/808179b3-596a-40b9-8d83-430f9021a9ce)
+A dynamic and scrollable table view to display all trainee details.
+- Lists trainee name, batch, course, progress, and status
+- Search and filter-friendly layout
+- Responsive design for various screen sizes
+- Clean UI for easy data management by Director/Trainer
 
-1.View Trainee Records
-- Displays a list of all registered trainees with their details.
-- Structured table format with scroll and responsive layout.
-- Includes search or filter logic for quick access (if implemented).
-- Easy to expand with Edit/Delete actions and backend data fetching.
+![Profile Update](https://github.com/user-attachments/assets/500b1f0b-9b74-4f36-9325-143a81510e79)
 
-![id card generator ](https://github.com/user-attachments/assets/4d104c9b-d2e5-4152-b10b-6dbd8120aa3e)
+##  Profile Update
 
-1. ID Card Generator
-- Generates digital ID cards for each trainee with name, photo, and unique ID.
-- Clean, printable layout suitable for downloading or sharing.
-- Automatically fetches trainee data and formats it into card style.
-- Built to extend with QR code or barcode integration in future.
-- 
-![update profile section](https://github.com/user-attachments/assets/77434154-1a39-4af0-ab17-362d81bef14a)
+A user-friendly form interface for updating profile details.
 
-1. Update Profile Section
-- Allows users to update their personal details like name, email, role, and profile image.
-- Fields pre-filled using current user data from context/localStorage.
-- Includes basic validation and live preview of changes.
-- Future-ready for backend update integration via API.
+- Editable fields: name, email, phone, and profile image
+- Pre-filled user data from context/state
+- Clean layout with responsive design
+- Built with **React**, **Tailwind CSS**, and `lucide-react` icons
 
 
+This template provi
+des a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-
-  
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 
