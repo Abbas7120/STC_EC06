@@ -50,6 +50,8 @@ Section switching via useState(activeSection).
 
 UI updates based on current route/section.
 
+These all UI for Director -
+
 
 These all are for trainer-
 
@@ -89,6 +91,7 @@ A user-friendly form interface for updating profile details.
 
 This template provi
 des a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
 
 Currently, two official plugins are available:
 
